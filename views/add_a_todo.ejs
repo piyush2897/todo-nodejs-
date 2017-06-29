@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>add todo</title>
+</head>
+<body>
+<br>
+<h2>CLICK TO ADD TODOS</h2>
+<br>
+<form method="get" action="http://localhost:3000/api">
+<table><tr><td>
+USERNAME:</td><td><input name="username" id="un" type="text"></td></tr><tr><td>
+TODO</td><td><input name="todo"  type="text"></td></tr><tr><td>
+ISDONE</td><td><input name="isDone"  type="text"></td></tr><tr><td>
+HASATTACHMENT:</td><td><input name="hasAttachment"  type="text"></td></tr><tr>
+<td><input type="submit" ></td></tr>
+</table>
+</form>
+<br><br>
+<h2>CLICK TO PRINT TODOS</h2>
+<br>
+<form method="get" action="http://localhost:3000/api/setupTodos">
+<input type="submit" />
+</form>
+<br><br>
+<h2>CLICK TO REMOVE TODOS</h2>
+<br>
+<form method="get" action="http://localhost:3000/api/remove">
+<table>
+<tr><td>USERNAME</td>
+<td><input name="username"></td></tr>
+<tr><td>TODO</td>
+<td><input name="todo"></td></tr>
+<tr><td>
+<input type="submit" /></td></tr>
+</table>
+</form>
+<br><br>
+<h2>CLICK TO UPDATE TODOS</h2>
+<br>
+<form method="get" action="http://localhost:3000/api/update">
+<table>
+<tr><td>USERNAME</td>
+<td><input name="username"></td></tr>
+<tr><td>TODO</td>
+<td><input name="todo"></td></tr>
+<tr><td><tr><td>
+ISDONE</td>
+<td><input name="isDone"  type="text"></td></tr>
+<tr><td>
+HASATTACHMENT:</td><td>
+<input name="hasAttachment"  type="text"></td></tr><tr><td>
+<input type="submit" /></td></tr>
+</table>
+</form>
+</body>
+</html>	
