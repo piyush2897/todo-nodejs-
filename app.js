@@ -1,5 +1,12 @@
 var express =require('express');
 var app =express();
+var path = require('path');
+var formidable = require('formidable');
+var fs = require('fs');
+
+//path is to store incoming data to a specipic location
+//formidable will parse the incoming form data (the uploaded files)
+//The fs module will be used to rename uploaded files
 
 var url="mongodb://localhost:27017/mydb";
 
@@ -54,6 +61,47 @@ app.get('/',function(req,res){
 	//console.log("here");
 	res.render('add_a_todo');
 });
+
+app.get('/demo',function(req,res){
+	res.render('index2.ejs');
+});
+
+app.post('/upload', function(req, res){
+
+  // create an incoming form object
+  var form = new formidable.IncomingForm();
+  console.log(form.file.name);
+  // specify that we want to allow the user to upload multiple files in a single request
+  form.multiples = true;
+
+  // store all uploads in the /uploads directory
+  form.uploadDir = path.join(__dirname, '/uploads');
+
+
+  // every time a file has been uploaded successfully,
+  // rename it to it's orignal name
+  form.on('file', function(field, file) {
+    fs.rename(file.path, path.join(form.uploadDir, file.name));
+  });
+
+  // log any errors that occur
+  form.on('error', function(err) {
+    console.log('An error has occured: \n' + err);
+  });
+
+  // once all the files have been uploaded, send a response to the client
+  form.on('end', function() {
+    res.end('success');
+  });
+
+  // parse the incoming request containing the form data
+  form.parse(req);
+  //console.log("Success");
+  //res.render('add_a_todo');
+
+});
+
+
 
 setupControllers(app);
 Add_data(app);
